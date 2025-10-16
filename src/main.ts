@@ -1,7 +1,16 @@
 /* eslint-disable prettier/prettier */
 import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { setupSwagger } from '../swagger';
+let setupSwagger: (app: any, name?: string) => void = () => {};
+try {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const sw = require('./swagger');
+  if (sw && typeof sw.setupSwagger === 'function') {
+    setupSwagger = sw.setupSwagger;
+  }
+} catch (e) {
+  // swagger module not found — leave setupSwagger as a no-op
+}
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
