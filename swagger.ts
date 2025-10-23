@@ -3,8 +3,14 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import fs from "fs";
 import { PRODUCTION } from './src/core/constants';
 export function setupSwagger(app: INestApplication, type: string) {
+
+    if (process.env.NODE_ENV === PRODUCTION) {
+    console.log(' Swagger disabled in production');
+    return;
+  }
+
     const options = new DocumentBuilder()
-        .setTitle('Anima API')
+        .setTitle('IB3D API')
         .setDescription('API Documentation')
         .setVersion('1.0')
         .addBearerAuth()
