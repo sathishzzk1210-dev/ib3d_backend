@@ -13,8 +13,12 @@ import {
   ApiOkResponse,
   ApiUnauthorizedResponse,
   ApiConflictResponse,
+  ApiNotFoundResponse,
 } from '@nestjs/swagger';
 import { Public } from 'src/common/decorators/public.decorator';
+import { ForgotPasswordDto } from 'src/modules/auth/dto/password-reset.dto';
+import { ResetPasswordDto } from 'src/modules/auth/dto/password-reset.dto';
+
 
 
 
@@ -59,4 +63,25 @@ export class AuthController {
       role: req.user.role,
     };
   }
+
+
+    @Public()
+  @Post('forgot-password')
+  @ApiOperation({ summary: 'Send password reset email' })
+  @ApiBody({ type: ForgotPasswordDto })
+  @ApiOkResponse({ description: 'Password reset email sent' })
+  @ApiNotFoundResponse({ description: 'User not found' })
+  forgotPassword(@Body() dto: ForgotPasswordDto) {
+    return this.authService.forgotPassword(dto);
+  }
+
+  @Public()
+  @Post('reset-password')
+  @ApiOperation({ summary: 'Reset password using token' })
+  @ApiBody({ type: ResetPasswordDto })
+  @ApiOkResponse({ description: 'Password reset successfully' })
+  resetPassword(@Body() dto: ResetPasswordDto) {
+    return this.authService.resetPassword(dto);
+  }
+
 }

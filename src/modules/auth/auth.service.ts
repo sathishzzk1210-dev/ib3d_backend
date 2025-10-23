@@ -1,10 +1,13 @@
-import { Injectable, UnauthorizedException, ConflictException } from '@nestjs/common';
+import { Injectable, UnauthorizedException, ConflictException, NotFoundException, BadRequestException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import UserEntity from 'src/modules/users/entities/user.entity';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { ForgotPasswordDto } from 'src/modules/auth/dto/password-reset.dto';
+import { MailUtils } from 'src/core/utils/mailUtils';
+import { ResetPasswordDto } from 'src/modules/auth/dto/password-reset.dto';
 
 @Injectable()
 export class AuthService {
@@ -82,4 +85,37 @@ const user = await this.usersRepo.findOne({
 
 
   }
+
+ async forgotPassword(dto: ForgotPasswordDto) {
+    const user = await this.usersRepo.findOne({ where: { email: dto.email_id } });
+    if (!user) throw new NotFoundException('User not found');
+
+    // JWT token valid for 30 minutes
+    const token = this.jwtService.sign({ sub: user.id }, { expiresIn: '30m' });
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
+
+    await MailUtils.sendPasswordResetEmail(user.email, resetUrl);
+
+    return { message: 'Password reset email sent' };
+  }
+
+  // --- Reset Password ---
+  async resetPassword(dto: ResetPasswordDto) {
+    let payload: any;
+    try {
+      payload = this.jwtService.verify(dto.token);
+    } catch (err) {
+      throw new BadRequestException('Invalid or expired token');
+    }
+
+    const user = await this.usersRepo.findOne({ where: { id: payload.sub } });
+    if (!user) throw new NotFoundException('User not found');
+
+    user.passwordHash = await bcrypt.hash(dto.password, 10);
+    await this.usersRepo.save(user);
+
+    return { message: 'Password has been reset successfully' };
+  }
+
+
 }

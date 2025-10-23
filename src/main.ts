@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 let setupSwagger: (app: any, name?: string) => void = () => {};
 try {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const sw = require('./swagger');
+  const sw = require('../swagger');
   if (sw && typeof sw.setupSwagger === 'function') {
     setupSwagger = sw.setupSwagger;
   }
@@ -88,7 +88,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..','..', 'public'), {
     prefix: '/public/',
   });
-  app.setGlobalPrefix('api/v1');
+  app.setGlobalPrefix('api/v1' , { exclude: ['api-docs'] });
   app.useStaticAssets(join(__dirname, '..', 'pdfs'));
 
   setupSwagger(app, 'user');
