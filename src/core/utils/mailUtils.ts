@@ -11,8 +11,8 @@ export class MailUtils {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'anandmar883@gmail.com',
-        pass: 'juys mnqs xpxv ysnx',
+        user: 'karthikiruba012@gmail.com',
+        pass: 'xsup vbup zidy pusy',
       },
     });
 
@@ -42,13 +42,13 @@ export class MailUtils {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'anandmar883@gmail.com',
-        pass: 'juys mnqs xpxv ysnx',
+        user: 'karthikiruba012@gmail.com',
+        pass: 'xsup vbup zidy pusy',
       },
     });
 
     const mailOptions = {
-      from: 'anandroyal147@gmail.com',
+      from: 'karthikiruba012@gmail.com',
       to: email,
       subject: 'Verify your email address',
       text: `Your verification code is: ${otp}`,
@@ -62,8 +62,8 @@ export class MailUtils {
           const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'anandmar883@gmail.com',
-        pass: 'juys mnqs xpxv ysnx',
+        user: 'karthikiruba012@gmail.com',
+        pass: 'xsup vbup zidy pusy',
       },
     });
       const mailOptions = {
