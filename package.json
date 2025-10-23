@@ -11,7 +11,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "node dist/main.js",
+    "start": "node -r tsconfig-paths/register dist/main.js",
     "start:dev": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:debug": "ts-node -r tsconfig-paths/register --inspect src/main.ts",
     "start:live": "ssh -t root@74.50.86.238 cd /home/slaylewks_node/live_source/dist && /usr/local/bin/pm2 restart main.js",
