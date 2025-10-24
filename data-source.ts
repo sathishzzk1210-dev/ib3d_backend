@@ -6,13 +6,13 @@ import { Patient } from './src/modules/customers/entities/patient.entity';
 import { Address } from './src/modules/addresses/entities/address.entity';
 import { Therapist } from './src/modules/therapist/entities/therapist.entity';
 // import { Staff } from './src/modules/StaffType/entities/staff.entity';
-import { Role } from 'src/modules/roles/entities/role.entity';
-import { Permission } from 'src/modules/permissions/entities/permission.entity';
-import User from 'src/modules/users/entities/user.entity';
-import { Order } from 'src/modules/orders/entities/order.entity';
-import { OrderItem } from 'src/modules/orders/entities/order-item.entity';
-import { OrderFile } from 'src/modules/orders/entities/order-file.entity';
-import { OrderTimeline } from 'src/modules/orders/entities/order-timeline.entity';
+// import { Role } from 'src/modules/roles/entities/role.entity';
+// import { Permission } from 'src/modules/permissions/entities/permission.entity';
+import User from './src/modules/users/entities/user.entity';
+import { Order } from './src/modules/orders/entities/order.entity';
+import { OrderItem } from './src/modules/orders/entities/order-item.entity';
+import { OrderFile } from './src/modules/orders/entities/order-file.entity';
+import { OrderTimeline } from './src/modules/orders/entities/order-timeline.entity';
 
 
 export const AppDataSource = new DataSource({

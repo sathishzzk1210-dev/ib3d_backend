@@ -1,13 +1,14 @@
 import { Injectable, UnauthorizedException, ConflictException, NotFoundException, BadRequestException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import UserEntity from 'src/modules/users/entities/user.entity';
+import UserEntity from '../users/entities/user.entity';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { ForgotPasswordDto } from 'src/modules/auth/dto/password-reset.dto';
 import { MailUtils } from 'src/core/utils/mailUtils';
 import { ResetPasswordDto } from 'src/modules/auth/dto/password-reset.dto';
+
 
 @Injectable()
 export class AuthService {
