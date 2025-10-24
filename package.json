@@ -11,7 +11,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "node -r tsconfig-paths/register dist/main.js",
+    "start": "node dist/main.js",
     "start:dev": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:debug": "ts-node -r tsconfig-paths/register --inspect src/main.ts",
     "start:live": "ssh -t root@74.50.86.238 cd /home/slaylewks_node/live_source/dist && /usr/local/bin/pm2 restart main.js",
@@ -61,6 +61,7 @@
     "helmet": "^7.0.0",
     "html-pdf": "^3.0.1",
     "luxon": "^3.5.0",
+    "module-alias": "^2.2.3",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "multer": "^1.4.5-lts.1",
@@ -135,5 +136,9 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "_moduleAliases": {
+  "src": "dist"
+}
+
 }
