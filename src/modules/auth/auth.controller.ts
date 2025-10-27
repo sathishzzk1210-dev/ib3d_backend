@@ -15,9 +15,9 @@ import {
   ApiConflictResponse,
   ApiNotFoundResponse,
 } from '@nestjs/swagger';
-import { Public } from 'src/common/decorators/public.decorator';
-import { ForgotPasswordDto } from 'src/modules/auth/dto/password-reset.dto';
-import { ResetPasswordDto } from 'src/modules/auth/dto/password-reset.dto';
+import { Public } from '../../common/decorators/public.decorator';
+import { ForgotPasswordDto } from '../../modules/auth/dto/password-reset.dto';
+import { ResetPasswordDto } from '../../modules/auth/dto/password-reset.dto';
 
 
 

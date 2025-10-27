@@ -32,7 +32,7 @@
 
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { BaseModel } from 'src/core/database/BaseModel';
-import User  from 'src/modules/users/entities/user.entity'; // Adjust the import path as necessary
+// import User  from 'src/modules/users/entities/user.entity'; // Adjust the import path as necessary
 
 // token.entity.ts
 @Entity({ name: 'tokens' })

@@ -5,10 +5,10 @@ import { CreateTeamMemberDto } from './dto/create-team-member.dto';
 import { UpdateTeamMemberDto } from './dto/update-team-member.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/common/guards/roles.guard';
+import { RolesGuard } from '../../common/guards/roles.guard';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { BranchGuard } from 'src/common/guards/branch.guard';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Roles } from '../../common/decorators/roles.decorator';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 
 @ApiTags('team-members')

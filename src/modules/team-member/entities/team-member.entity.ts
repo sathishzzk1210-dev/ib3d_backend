@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column,OneToMany,ManyToMany, JoinTable,ManyToOne, JoinColumn } from 'typeorm';
-import  User  from 'src/modules/users/entities/user.entity'; // Adjust the import path as necessary
+// import  User  from 'src/modules/users/entities/user.entity'; // Adjust the import path as necessary
 import { Branch } from 'src/modules/branches/entities/branch.entity';
 
 

@@ -6,10 +6,10 @@ import { DashboardService } from './dashboard.service';
 import { DashboardQueryDto, DistributionQueryDto } from './dto/dashboard-query.dto';
 import { BranchSummaryDto } from './dto/branch-summary.dto';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/common/guards/roles.guard';
+import { RolesGuard } from '../../common/guards/roles.guard';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { BranchGuard } from 'src/common/guards/branch.guard';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Roles } from '../../common/decorators/roles.decorator';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 
 @ApiTags('dashboard')

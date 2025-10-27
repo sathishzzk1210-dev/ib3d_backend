@@ -2,8 +2,8 @@ import { Controller, Get, Patch, Body, UseGuards, Request, Param } from '@nestjs
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { RolesGuard } from 'src/common/guards/roles.guard';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { RolesGuard } from '../../common/guards/roles.guard';
+import { Roles } from '../../common/decorators/roles.decorator';
 import { ChangeRoleDto } from './dto/change-role.dto';
 
 @Controller('users')

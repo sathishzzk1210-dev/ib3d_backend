@@ -6,7 +6,7 @@ import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { ForgotPasswordDto } from 'src/modules/auth/dto/password-reset.dto';
-import { MailUtils } from 'src/core/utils/mailUtils';
+import { MailUtils } from '../../core/utils/mailUtils';
 import { ResetPasswordDto } from 'src/modules/auth/dto/password-reset.dto';
 
 
