@@ -49,18 +49,7 @@ async function bootstrap() {
   console.log(' JWTKEY Loaded:', process.env.JWTKEY);
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  app.use((req, res, next) => {
-  if (req.method !== 'GET' && req.headers['content-type']?.includes('application/json') && req.body?.data) {
-    try {
-      const decrypted = AES.decrypt(req.body.data);
-      req.body = JSON.parse(decrypted);
-    } catch (error) {
-      console.error('AES decryption failed:', error.message);
-      return res.status(400).json({ message: 'Invalid encrypted request body' });
-    }
-  }
-  next();
-});
+
   /*-------- security headers --------*/
   // app.enableCors({ origin: '*', methods: ALLOWED_METHODS }); //need to change enable allowed cors url only
   app.enableCors(corsOption);
@@ -93,6 +82,15 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'pdfs'));
 
   setupSwagger(app, 'user');
+
+
+  app.use((req, res, next) => {
+  if (req.path.startsWith('/api-docs')) {
+    // Skip all auth checks for Swagger UI & JSON docs
+    return next();
+  }
+  next();
+})
   app.use(limiter);
   app.useGlobalFilters(new GlobalErrorHandler());
   app.use(device.capture());
