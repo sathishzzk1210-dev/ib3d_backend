@@ -26,6 +26,7 @@ import * as bodyParser from 'body-parser';
 import { GlobalExceptionFilter } from './core/utils/customValidation';
 import { GlobalErrorHandler } from './core/utils/globalErrorHandler';
 import { AES } from 'src/core/utils//encryption.util';
+import { Public } from './common/decorators/public.decorator';
 
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // one minutes
@@ -84,16 +85,17 @@ async function bootstrap() {
   setupSwagger(app, 'user');
 
 
-   app.use((req, res, next) => {
-    if (
-      req.path.startsWith('/api-docs') ||
-      req.path.startsWith('/swagger') ||
-      req.path.startsWith('/swagger-ui')
-    ) {
-      return next();
-    }
-    next();
-  });
+app.use((req, res, next) => {
+  if (
+    req.path.startsWith('/api-docs') ||
+    req.path.startsWith('/swagger') ||
+    req.path.startsWith('/swagger-ui')
+  ) {
+    Reflect.defineMetadata('isPublic', true, req.route || req);
+  }
+  next();
+});
+
   app.use(limiter);
   app.useGlobalFilters(new GlobalErrorHandler());
   app.use(device.capture());

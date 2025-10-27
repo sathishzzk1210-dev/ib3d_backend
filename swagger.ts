@@ -2,6 +2,8 @@ import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import fs from "fs";
 import { PRODUCTION } from './src/core/constants';
+import { Public } from './src/common/decorators/public.decorator';
+
 export function setupSwagger(app: INestApplication, type: string) {
 
     const options = new DocumentBuilder()
@@ -11,11 +13,15 @@ export function setupSwagger(app: INestApplication, type: string) {
         .addBearerAuth()
         .build();
 
-          const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api-docs', app, document, {
+      const document = SwaggerModule.createDocument(app, options);
+  const path = 'api-docs';
+
+  // 👇 Mark swagger as public
+  (app as any).getHttpAdapter().get(path, Public(), () => {});
+
+  SwaggerModule.setup(path, app, document, {
     swaggerOptions: { persistAuthorization: true },
   });
-
     // const document = SwaggerModule.createDocument(app, options);
     // document.security = [{ bearer: [] }];
 
