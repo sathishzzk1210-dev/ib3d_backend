@@ -4,11 +4,6 @@ import fs from "fs";
 import { PRODUCTION } from './src/core/constants';
 export function setupSwagger(app: INestApplication, type: string) {
 
-  //   if (process.env.NODE_ENV === PRODUCTION) {
-  //   console.log(' Swagger disabled in production');
-  //   return;
-  // }
-
     const options = new DocumentBuilder()
         .setTitle('IB3D API')
         .setDescription('API Documentation')
@@ -16,10 +11,15 @@ export function setupSwagger(app: INestApplication, type: string) {
         .addBearerAuth()
         .build();
 
-    const document = SwaggerModule.createDocument(app, options);
-    document.security = [{ bearer: [] }];
+          const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api-docs', app, document, {
+    swaggerOptions: { persistAuthorization: true },
+  });
 
-    SwaggerModule.setup('api-docs', app, document);
+    // const document = SwaggerModule.createDocument(app, options);
+    // document.security = [{ bearer: [] }];
+
+    // SwaggerModule.setup('api-docs', app, document);
     // if (type == 'user') process.env.NODE_ENV != PRODUCTION && fs.writeFileSync('user-swagger.json', JSON.stringify(document, null, 2));
     // else process.env.NODE_ENV != PRODUCTION && fs.writeFileSync('admin-swagger.json', JSON.stringify(document, null, 2));
 }

@@ -84,13 +84,16 @@ async function bootstrap() {
   setupSwagger(app, 'user');
 
 
-  app.use((req, res, next) => {
-  if (req.path.startsWith('/api-docs')) {
-    // Skip all auth checks for Swagger UI & JSON docs
-    return next();
-  }
-  next();
-})
+   app.use((req, res, next) => {
+    if (
+      req.path.startsWith('/api-docs') ||
+      req.path.startsWith('/swagger') ||
+      req.path.startsWith('/swagger-ui')
+    ) {
+      return next();
+    }
+    next();
+  });
   app.use(limiter);
   app.useGlobalFilters(new GlobalErrorHandler());
   app.use(device.capture());
