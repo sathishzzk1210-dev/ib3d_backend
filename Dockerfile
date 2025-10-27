@@ -80,4 +80,7 @@ USER node
 EXPOSE 8080
 
 # Start the server using the production build
-CMD ["node", "dist/main.js"]
+# CMD ["node", "dist/main.js"]
+# Start the server using tsconfig-paths (handles aliases)
+CMD ["node", "-r", "tsconfig-paths/register", "dist/main.js"]
+

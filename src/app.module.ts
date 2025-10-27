@@ -10,33 +10,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DBconfig } from './config';
 import { JwtMiddleware } from './middleware/jwt.middleware';
 import { config } from 'dotenv';
-import { AddressesModule } from './modules/addresses/addresses.module';
+// import { AddressesModule } from './modules/addresses/addresses.module';
 import { PropertiesModule } from './modules/properties/properties.module';
 // import { CompanyProfileModule } from './modules/company-profile/company-profile.module';
-import { PatientsModule } from './modules/customers/patient.module';
 // import { AgentsModule } from './modules/agents/agents.module';
-import { MenusModule } from './modules/menus/menus.module';
-import { RolesModule } from './modules/roles/roles.module';
-import { PermissionsModule } from './modules/permissions/permissions.module';
-import { LeadsModule } from './modules/leads/leads.module';
+
 import { LocationModule } from './modules/location/location.module';
 import { SocialLinks } from './modules/social-links/entities/social-links.entity';
-import { TherapistsModule } from './modules/therapist/therapists.module';
-// import { StaffModule } from './modules/StaffType/staff.module';
-import { SeederModule } from './seeds/seeder.module';
+
 // import { FirebaseModule } from './core/database/config/firebase/firebase.module';
 import { TokenModule } from './modules/users/token.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
-import { TeamMemberModule } from './modules/team-member/team-member.module';
-import { AppointmentsModule } from './modules/appointment/appointment.module';
 import { CalendarsModule } from './modules/calendars/calendars.module';
-import { SpecializationModule } from './modules/specialization/specialization.module';
-import { BranchesModule } from './modules/branches/branches.module';
-import { ConsultationsModule } from './modules/consultations/consultations.module';
-import { ProfileModule } from './modules/profile/profile.module';
-import { DepartmentsModule } from './modules/Department/departments.module';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
+
 import { RolesGuard } from './common/guards/roles.guard';
 import { OrdersModule } from './modules/orders/orders.module';
 
@@ -93,7 +80,6 @@ console.log('env--->', DBconfig.host, DBconfig.port, DBconfig.username, DBconfig
     // SpecializationModule,
     // BranchesModule,
     // ConsultationsModule,
-    ProfileModule,
     // DepartmentsModule,
     // DashboardModule,
   

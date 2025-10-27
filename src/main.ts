@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import 'module-alias/register';
+// import 'module-alias/register';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 let setupSwagger: (app: any, name?: string) => void = () => {};
