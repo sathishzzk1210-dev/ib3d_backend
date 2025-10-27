@@ -4,10 +4,10 @@ import fs from "fs";
 import { PRODUCTION } from './src/core/constants';
 export function setupSwagger(app: INestApplication, type: string) {
 
-    if (process.env.NODE_ENV === PRODUCTION) {
-    console.log(' Swagger disabled in production');
-    return;
-  }
+  //   if (process.env.NODE_ENV === PRODUCTION) {
+  //   console.log(' Swagger disabled in production');
+  //   return;
+  // }
 
     const options = new DocumentBuilder()
         .setTitle('IB3D API')
