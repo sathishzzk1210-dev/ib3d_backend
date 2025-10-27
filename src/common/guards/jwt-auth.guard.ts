@@ -1,4 +1,3 @@
-// src/core/guards/jwt-auth.guard.ts
 import { ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
@@ -11,15 +10,30 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   }
 
   canActivate(context: ExecutionContext) {
+    const request = context.switchToHttp().getRequest();
+
+    // 1. Skip Swagger & docs routes
+    const path = request.path;
+    if (
+      path.startsWith('/api-docs') ||
+      path.startsWith('/swagger') ||
+      path.startsWith('/swagger-ui')
+    ) {
+      return true;
+    }
+
+    // 2. Allow routes marked as @Public()
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
       context.getHandler(),
       context.getClass(),
     ]);
     if (isPublic) return true;
+
+    // 3. Default behavior → require JWT
     return super.canActivate(context);
   }
 
-  handleRequest(err: any, user: any, info: any, context: ExecutionContext) {
+  handleRequest(err: any, user: any, info: any) {
     if (err) {
       console.error('JWT Error:', err);
       throw err;
