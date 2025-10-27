@@ -5,7 +5,7 @@ import { ProfileController } from './profile.controller';
 import { ProfileService } from './profile.service';
 import { AuthModule } from 'src/modules/auth/auth.module';   
 import { UsersModule } from 'src/modules/users/users.module'; 
-import  User  from 'src/modules/users/entities/user.entity';
+import  User  from '../users/entities/user.entity';
 @Module({
   imports: [
     AuthModule, 

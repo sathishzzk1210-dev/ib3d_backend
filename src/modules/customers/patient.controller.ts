@@ -45,8 +45,8 @@ import { plainToClass,  plainToInstance } from 'class-transformer';
 import { logger } from 'src/core/utils/logger';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
-import { Roles } from 'src/common/decorators/roles.decorator';
-import { RolesGuard } from 'src/common/guards/roles.guard';
+import { Roles } from '../../common/decorators/roles.decorator';
+import { RolesGuard } from '../../common/guards/roles.guard';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { BranchGuard } from 'src/common/guards/branch.guard';
 

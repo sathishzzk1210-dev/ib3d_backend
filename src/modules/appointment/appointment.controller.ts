@@ -7,10 +7,10 @@ import { UpdateAppointmentDto } from './dto/update-appointment.dto';
 import { AppointmentsService } from './appointment.service';
 import { FindAllAppointmentsQueryDto } from './dto/find-all-appointments-query.dto';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/common/guards/roles.guard';
+import { RolesGuard } from '../../common/guards/roles.guard';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { BranchGuard } from 'src/common/guards/branch.guard';
-import { Roles } from 'src/common/decorators/roles.decorator';
+import { Roles } from '../../common/decorators/roles.decorator';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 
 
