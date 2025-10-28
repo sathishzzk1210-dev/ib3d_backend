@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 let setupSwagger: (app: any, name?: string) => void = () => {};
 try {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const sw = require('../swagger');
+  const sw = require('./swagger');
   if (sw && typeof sw.setupSwagger === 'function') {
     setupSwagger = sw.setupSwagger;
   }
