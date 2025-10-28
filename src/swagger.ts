@@ -1,8 +1,8 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import fs from "fs";
-import { PRODUCTION } from './src/core/constants';
-import { Public } from './src/common/decorators/public.decorator';
+import { PRODUCTION } from './core/constants';
+import { Public } from './common/decorators/public.decorator';
 
 export function setupSwagger(app: INestApplication, type: string) {
 
